@@ -12,6 +12,7 @@
  ****************************************************************/
 function getChannelName(channel) {
   // Your code here
+  return channel.name;
 }
 
 /**************************************************************
@@ -21,6 +22,7 @@ function getChannelName(channel) {
  ****************************************************************/
 function numberOfVideos(channel) {
   // Your code here
+  return channel.videos.length
 }
 
 /**************************************************************
@@ -34,6 +36,7 @@ function numberOfVideos(channel) {
  ****************************************************************/
 function channelHasVideo(videoTitle, channel) {
   // Your code here
+  return channel.videos.some(element => element.title === videoTitle);
 }
 
 /**************************************************************
@@ -46,6 +49,7 @@ function channelHasVideo(videoTitle, channel) {
  ****************************************************************/
 function getChannelByName(channelName, channels) {
   // Your code here
+  return channels.find(channel => channel.name === channelName);
 }
 
 /**************************************************************
@@ -58,8 +62,93 @@ function getChannelByName(channelName, channels) {
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
   // Your code here
+  return channels.find(channel => channel.videos.some(video => video.title === videoTitle))
 }
 
+console.log(getChannelByVideoTitle("The Universal S", [
+  {
+    name: "PowerfulJRE",
+    description: "The Joe Rogan Experience podcast",
+    videos: [
+      {
+        title: "Joe Rogan Experience #1480 - Kevin Hart",
+        duration: 121
+      },
+
+      {
+        title: "Joe Rogan Experience #1470 - Elon Musk",
+        duration: 120
+      },
+      {
+        title: "Joe Rogan Experience #1477 - Tony Hawk",
+        duration: 102
+      },
+      {
+        title: "Joe Rogan Experience #1413 - Bill Maher",
+        duration: 118
+      },
+      {
+        title: "Joe Rogan Experience #1208 - Jordan Peterson",
+        duration: 175
+      }
+    ]
+  },
+  {
+    name: "LEMMiNO",
+    description: "Documentaries and list videos narrated by a 20-something Swedish guy.",
+    videos: [
+      {
+        title: "The Universal S",
+        duration: 19
+      },
+
+      {
+        title: "Cicada 3301: An Internet Mystery",
+        duration: 18
+      },
+      {
+        title: "The Search For D.B. Cooper",
+        duration: 29
+      },
+      {
+        title: "The Mandela Effect: A Critical Analysis",
+        duration: 16
+      }
+    ]
+  },
+  {
+    name: "CGP Grey",
+    description: "What ever I finds interesting.",
+    videos: [
+      {
+        title: "The Trouble With Tumbleweed",
+        duration: 7
+      },
+
+      {
+        title: "Lockdown Productivity: Spaceship You",
+        duration: 11
+      },
+      {
+        title: "The Fable of the Dragon-Tyrant",
+        duration: 13
+      },
+      {
+        title: "The Rules for Rulers",
+        duration: 18
+      },
+      {
+        title: "The Simple Solution to Traffic",
+        duration: 4
+      },
+      {
+        title: "You Are Two",
+        duration: 5
+      }
+    ]
+  },
+]
+));
 /**************************************************************
  * searchChannels(query, channels):
  * - receives a query (string)
@@ -70,6 +159,9 @@ function getChannelByVideoTitle(videoTitle, channels) {
  ****************************************************************/
 function searchChannels(query, channels) {
   // Your code here
+
+  const h = channels.filter(channel => channel.name.includes(query) || channel.description.includes(query))
+  return h
 }
 
 module.exports = {
